@@ -8,7 +8,7 @@
 **KISS** - Keep it simple, stupid!
 
 Algorithm script file (**algo_template.py**) ...
-```
+```python
 import logging
 log = logging.getLogger("friar_tuck")
     
@@ -27,13 +27,13 @@ def handle_data(context, data):
     log.info("hello, I am in handle_data")
 ```
 Config file (**rh_config.cfg**) ...
-```
+```python
 [LOGIN]
     username = <robinhood username>
     password = <robinhood password>
 ```
 Run FriarTuck - **Live**
-```
+```python
 python friar_tuck_run.py --algo_script algo_template --config_file rh_config.cfg --data_frequency 1h
 ```
 ## FRIAR TUCK SUMMARY
@@ -60,14 +60,14 @@ Drive for this project: Build an algorithm on Quantopian, was satisfied with the
 ### INSTALLATION
 [i]: #installation 'Installation guide'
 
-```
+```shell
 pip install -r requirements.txt
 ```
 
 ## USAGE
 [u]: #usage 'Product usage'
 ***Load Contracts***
-```
+```python
     context.aapl = lookup_security("AAPL")
     context.wtw = lookup_security("WTW")
     context.fit = lookup_security("FIT")
@@ -86,7 +86,7 @@ pip install -r requirements.txt
     ...
 ```
 ***Using "data" object for current data from "handle_data(context, data)"***
-```
+```python
     # Get current data (all fields [open, high, low, close, volume, price, bid_price, bid_size, ask_price, ask_size])
     current_quote = data.current(context.aapl)
     log.debug(current_quote)
@@ -101,7 +101,7 @@ pip install -r requirements.txt
     
 ```
 ***Using "data" object for historical-data from "handle_data(context, data) and on_market_open(context, data)"***
-```
+```python
     hist_quotes = data.history([context.aapl, context.wtw], frequency='1m', bar_count=10, field='close')
     log.debug(hist_quotes)
 
@@ -111,7 +111,7 @@ pip install -r requirements.txt
     
 ```
 ***Sample code using pandas to load contracts from external file***
-```
+```python
     import pandas as pd
     ...
     context.assets = []
@@ -124,7 +124,7 @@ pip install -r requirements.txt
     log.debug("symbol_metadata (%s)" % context.symbol_metadata)
 ```
 ***Ordering using Friar Tuck***
-```
+```python
     ...
     # Ordering using monetary value; this will use last trade price to calculate number of shares to order
     # for buy
